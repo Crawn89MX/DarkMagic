@@ -64,12 +64,12 @@ public class CameraController : MonoBehaviour
         #endregion
 
         #region rotacion camara
-        if(Input.GetMouseButton(1))
-        {
+        // if(Input.GetMouseButton(1))
+        // {
             _camRotX += Input.GetAxis("Mouse X");
             _camRotY += Input.GetAxis("Mouse Y");
             _focusPoint.transform.localRotation = Quaternion.Euler(-_camRotY, _camRotX, 0);
-        }
+        // }
         #endregion
     }
 }
