@@ -54,16 +54,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\CharacterScript.cs" />
+    <Compile Include="Assets\Scripts\GhostController.cs" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-=======
-     <Compile Include="Assets\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\CharacterScript.cs" />
-     <Compile Include="Assets\Scripts\EnemyController.cs" />
-     <Compile Include="Assets\Scripts\GhostController.cs" />
->>>>>>> c5877c81c9152f2e14b89b7f228464bbbc18e2cd
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
