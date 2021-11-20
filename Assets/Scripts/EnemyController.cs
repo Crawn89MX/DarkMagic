@@ -26,8 +26,8 @@ public class EnemyController : MonoBehaviour
 
         this.transform.LookAt(_player);
 
-        velX = enemyX < playerX ? 0.05f : -0.05f;
-        velY = enemyZ < playerZ ? 0.05f : -0.05f;
+        velX = enemyX < playerX ? 0.03f : -0.03f;
+        velY = enemyZ < playerZ ? 0.03f : -0.03f;
 
         float X = enemyX + velX;
         float Y = this.transform.localPosition.y;
@@ -35,8 +35,8 @@ public class EnemyController : MonoBehaviour
 
         this.transform.localPosition = new Vector3(X,Y,Z);
 
-        anim.SetFloat("VelX",velX*20);
-        anim.SetFloat("VelY",velY*20);
+        anim.SetFloat("VelX",velX*33.3f);
+        anim.SetFloat("VelY",velY*33.3f);
     }
 
     private void OnTriggerEnter(Collider collision){

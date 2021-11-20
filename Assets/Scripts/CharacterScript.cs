@@ -13,18 +13,37 @@ public class CharacterScript : MonoBehaviour
     private Animator anim;
     [SerializeField]
     private float x,y;
+    [SerializeField]
+    private Rigidbody rigidBody;
+    [SerializeField]
+    private float forceJump = 8f;
+    public bool CanJump;
+    
+
+    private float health;
 
     private float cameraY, playerY,diffAngle;
 
     // Start is called before the first frame update
     void Start()
     {
+        CanJump = false;
         anim = GetComponent<Animator>();
 
         if(_playerFocusPoint==null)
         {
             Debug.LogWarning("Se debe asignar la camara del jugador desde el inspector");
         }
+    }
+
+    void FixedUpdate()
+    {
+        if(x!=0 && y!=0)
+            transform.Rotate(0,y*Time.deltaTime*velocidadMovimiento,0);
+
+        transform.Translate(x*Time.deltaTime*velocidadMovimiento,0,0);
+        transform.Translate(0,0,y*Time.deltaTime*velocidadMovimiento);
+
     }
 
     // Update is called once per frame
@@ -46,11 +65,28 @@ public class CharacterScript : MonoBehaviour
                 } 
             }
         }
-
-        transform.Translate(0,0,y*Time.deltaTime*velocidadMovimiento);
-        transform.Rotate(0,x*Time.deltaTime*velocidadRotacion,0);
-
+        
         anim.SetFloat("VelX",x);
         anim.SetFloat("VelY",y);
+
+        if(CanJump){
+            if(Input.GetKeyDown(KeyCode.Space)){
+                anim.SetBool("Jump",true);
+                rigidBody.AddForce(new Vector3(0,forceJump,0),ForceMode.Impulse);
+            }
+            anim.SetBool("Floor",true);
+        }else{
+            Falling();
+        }
+    }
+
+    public void Falling(){
+        anim.SetBool("Floor",false);
+        anim.SetBool("Jump",false);
+    }
+
+    void decreaseHealth(float damage)
+    {
+        print("hola");
     }
 }
