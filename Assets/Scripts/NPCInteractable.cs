@@ -10,10 +10,23 @@ public class NPCInteractable : Interactable
     [SerializeField]
     private string[] _dialogue;
 
+    private DialogueManager _dialogueManager; // *******************
+
+    private void Start()
+    {
+        _dialogueManager = FindObjectOfType<DialogueManager>(); //Sirve para singletons
+        if (_dialogueManager == null)
+        {
+            Debug.LogWarning("No se encontró un DialogueManager en la escena");
+        }
+    }
+
+
     public override void Interact()
     {
         // base.Interact();
         Debug.Log("Interactuando con un NPC");
+        _dialogueManager.SetDialogue(_name, _dialogue);
         //Usar un manejador de diálogos para mostrar los diálogos
     }
 
