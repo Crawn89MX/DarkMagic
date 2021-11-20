@@ -53,4 +53,26 @@ public class CharacterScript : MonoBehaviour
         anim.SetFloat("VelX",x);
         anim.SetFloat("VelY",y);
     }
+
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("Interactable"))
+        {
+            // Debug.Log("Se encontró objeto");
+            Interactable interacted = collision.GetComponent<Interactable>();
+
+            if (interacted != null)
+            {
+                // Ejecutamos el método del script Interactable
+                interacted.Interact();
+            }
+            else
+            {
+                Debug.Log("pero el objeto no tiene script para interactuar");
+            }
+        }
+    }
+
+
 }
