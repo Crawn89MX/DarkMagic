@@ -92,6 +92,7 @@ public class DialogueManager : MonoBehaviour
         _dialogueIdx = 0;
         _nameTxt.text = _name;
         _continueTxt.text = "Continuar";
+
         ShowDialogue();
         _dialoguePnl.SetActive(true);
     }
@@ -109,7 +110,7 @@ public class DialogueManager : MonoBehaviour
             Debug.Log("Se termina el diálogo");
             _dialoguePnl.SetActive(false);
         }
-        if (_dialogueIdx == _dialogueList.Count - 2)//Uno antes de terminar
+        else if (_dialogueIdx == _dialogueList.Count - 2)//Uno antes de terminar
         {
             _continueTxt.text = "Salir";
             _dialogueIdx++;
