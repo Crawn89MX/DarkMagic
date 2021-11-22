@@ -12,7 +12,7 @@ public class CharacterScript : MonoBehaviour
     private float velocidadRotacion = 200.0f;
     private Animator anim;
     [SerializeField]
-    private float x,y;
+    private float x,y,z;
     [SerializeField]
     private Rigidbody rigidBody;
     [SerializeField]
@@ -38,8 +38,8 @@ public class CharacterScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(x!=0 && y!=0)
-            transform.Rotate(0,y*Time.deltaTime*velocidadRotacion,0);
+        if(x==0 && y!=0)
+            transform.Rotate(0,z*Time.deltaTime*velocidadRotacion,0);
 
 
         transform.Translate(0,0,y*Time.deltaTime*velocidadMovimiento);
@@ -59,9 +59,9 @@ public class CharacterScript : MonoBehaviour
 
         if(!(diffAngle > -2 && diffAngle < 2)){
             if((y != 0 && x == 0)){
-                x = -1;
+                z = -1;
                 if((diffAngle > 0 && diffAngle < 180) || (diffAngle+360 < 180) ){
-                    x = 1;
+                    z = 1;
                 } 
             }
         }
