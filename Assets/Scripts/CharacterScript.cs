@@ -39,11 +39,11 @@ public class CharacterScript : MonoBehaviour
     void FixedUpdate()
     {
         if(x!=0 && y!=0)
-            transform.Rotate(0,y*Time.deltaTime*velocidadMovimiento,0);
+            transform.Rotate(0,y*Time.deltaTime*velocidadRotacion,0);
 
-        transform.Translate(x*Time.deltaTime*velocidadMovimiento,0,0);
+
         transform.Translate(0,0,y*Time.deltaTime*velocidadMovimiento);
-
+        transform.Translate(x*Time.deltaTime*velocidadMovimiento,0,0);
     }
 
     // Update is called once per frame
@@ -65,7 +65,8 @@ public class CharacterScript : MonoBehaviour
                 } 
             }
         }
-        
+
+
         anim.SetFloat("VelX",x);
         anim.SetFloat("VelY",y);
 
