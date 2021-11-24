@@ -2,3 +2,6 @@
 /Logs
 /Packages
 /Temp
+Assets/Characters/paladin/Animations/*.meta
+Assets/MyAssets/*.meta
+Assets/Scripts/*.meta

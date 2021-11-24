@@ -17,10 +17,7 @@ public class CharacterScript : MonoBehaviour
     private Rigidbody rigidBody;
     [SerializeField]
     private float forceJump = 8f;
-    public bool CanJump;
-    
-
-    private float health;
+    public bool CanJump, Punched;
 
     private float cameraY, playerY,diffAngle;
 
@@ -38,7 +35,7 @@ public class CharacterScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(x==0 && y!=0)
+        if((x!=0 || y!=0))
             transform.Rotate(0,z*Time.deltaTime*velocidadRotacion,0);
 
 
@@ -54,11 +51,10 @@ public class CharacterScript : MonoBehaviour
 
         cameraY = _playerFocusPoint.eulerAngles.y;
         playerY = _player.eulerAngles.y;
-        
         diffAngle = cameraY - playerY;
 
         if(!(diffAngle > -2 && diffAngle < 2)){
-            if((y != 0 && x == 0)){
+            if((y != 0 || x != 0)){
                 z = -1;
                 if((diffAngle > 0 && diffAngle < 180) || (diffAngle+360 < 180) ){
                     z = 1;
@@ -66,9 +62,18 @@ public class CharacterScript : MonoBehaviour
             }
         }
 
-
         anim.SetFloat("VelX",x);
         anim.SetFloat("VelY",y);
+
+        if(!Punched){
+            if(Input.GetMouseButtonDown(1)){
+                anim.SetBool("Attacking",true);
+            }
+            Punched = true;
+        }else{
+            anim.SetBool("Attacking",false);
+            Punched = false;
+        }
 
         if(CanJump){
             if(Input.GetKeyDown(KeyCode.Space)){
@@ -86,10 +91,7 @@ public class CharacterScript : MonoBehaviour
         anim.SetBool("Jump",false);
     }
 
-    void decreaseHealth(float damage)
-    {
-        print("hola");
-    }
+    
 
 
     private void OnTriggerEnter(Collider collision)
